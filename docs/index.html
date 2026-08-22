@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Warning Lites — 2026 Product Catalog</title>
+<meta name="description" content="The Warning Lites 2026 product catalog as an embeddable flipbook. Traffic safety products, high-visibility apparel, cones, delineators and roll-up signs.">
+<meta name="theme-color" content="#0E0F11">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Warning Lites — 2026 Product Catalog">
+<meta property="og:description" content="Traffic safety products and roadway safety equipment. Trusted since 1954.">
+<meta property="og:image" content="pages/page-01.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/site.css">
+<link rel="preload" as="font" type="font/woff2" href="assets/fonts/barlow-condensed-700-latin.woff2" crossorigin>
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav__brand" href="./">
+    <span class="mark">Warning Lites</span>
+    <span class="nav__brandtext">Performance with Pride</span>
+  </a>
+  <nav class="nav__links" aria-label="Sections">
+    <a href="#catalog">Catalog</a>
+    <a href="#embed">Embed</a>
+    <a href="#options">Options</a>
+  </nav>
+  <a class="btn btn--primary" href="pages/catalog.pdf" download>
+    Download PDF
+    <span class="btn__circle" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m-5-5 5 5 5-5M4 21h16"/></svg>
+    </span>
+  </a>
+</header>
+
+<main>
+  <section class="hero" id="catalog">
+    <div class="wrap">
+      <p class="eyebrow">Traffic safety products · Roadway safety equipment</p>
+      <h1 class="hero__title">2026 Product<br>Catalog</h1>
+      <div class="hero__meta">
+        <p class="hero__lede">
+          Twenty-one pages of high-visibility apparel, cones, delineators and
+          roll-up signs. Flip through it here, or put the same book on any
+          website with two lines of code.
+        </p>
+        <dl class="stats">
+          <div><dt>Pages</dt><dd>21</dd></div>
+          <div><dt>Sections</dt><dd>6</dd></div>
+          <div><dt>Serving Minnesota since</dt><dd>1954</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="wrap wrap--wide">
+      <div class="book-frame">
+        <div data-warning-lites-flipbook data-page="1" data-max-height="880"></div>
+        <noscript>
+          <p class="noscript">
+            This flipbook needs JavaScript.
+            <a href="pages/catalog.pdf">Download the catalog as a PDF instead.</a>
+          </p>
+        </noscript>
+      </div>
+      <p class="book-hint">
+        <b>Drag a page</b> to turn it &nbsp;·&nbsp; <b>← →</b> to step &nbsp;·&nbsp;
+        <b>C</b> for contents &nbsp;·&nbsp; <b>double-click</b> a page to zoom
+      </p>
+    </div>
+  </section>
+
+  <section class="band" id="embed">
+    <div class="wrap">
+      <p class="eyebrow">Put it on your site</p>
+      <h2 class="h2">Two lines of code, any platform</h2>
+      <p class="lede">
+        Everything is static — HTML, CSS, images. It runs on WordPress, Squarespace,
+        Shopify, Webflow, or a plain HTML page, with no build step and no third-party
+        requests. Paste one of these where you want the book to appear.
+      </p>
+
+      <div class="tabs" role="tablist" aria-label="Embed method">
+        <button class="tab is-on" role="tab" aria-selected="true" data-tab="script">Script embed</button>
+        <button class="tab" role="tab" aria-selected="false" data-tab="iframe">Plain iframe</button>
+      </div>
+
+      <div class="panel is-on" data-panel="script">
+        <p class="panel__note">
+          Recommended. The book resizes itself to the container and switches
+          between a two-page spread and single pages as the space allows.
+        </p>
+        <div class="code">
+          <button class="copy" type="button">Copy</button>
+<pre><code><span class="t">&lt;div</span> <span class="a">data-warning-lites-flipbook</span><span class="t">&gt;&lt;/div&gt;</span>
+<span class="t">&lt;script</span> <span class="a">src</span>=<span class="s">"__BASE__embed.js"</span> <span class="a">defer</span><span class="t">&gt;&lt;/script&gt;</span></code></pre>
+        </div>
+      </div>
+
+      <div class="panel" data-panel="iframe">
+        <p class="panel__note">
+          For page builders that strip <code>&lt;script&gt;</code> tags. Set the
+          height yourself — the ratio below suits most full-width containers.
+        </p>
+        <div class="code">
+          <button class="copy" type="button">Copy</button>
+<pre><code><span class="t">&lt;iframe</span>
+  <span class="a">src</span>=<span class="s">"__BASE__flipbook.html"</span>
+  <span class="a">title</span>=<span class="s">"Warning Lites 2026 Product Catalog"</span>
+  <span class="a">width</span>=<span class="s">"100%"</span> <span class="a">height</span>=<span class="s">"820"</span>
+  <span class="a">style</span>=<span class="s">"border:0;border-radius:14px"</span>
+  <span class="a">loading</span>=<span class="s">"lazy"</span> <span class="a">allow</span>=<span class="s">"fullscreen"</span> <span class="a">allowfullscreen</span><span class="t">&gt;&lt;/iframe&gt;</span></code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--alt" id="options">
+    <div class="wrap">
+      <p class="eyebrow">Options</p>
+      <h2 class="h2">Tune it without touching the code</h2>
+      <p class="lede">
+        Set these as <code>data-</code> attributes on the container for the script
+        embed, or as query parameters on the iframe URL
+        (<code>flipbook.html?page=7&amp;theme=light</code>).
+      </p>
+
+      <div class="table-scroll">
+        <table class="opts">
+          <thead>
+            <tr><th>Option</th><th>Values</th><th>Default</th><th>What it does</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>page</code></td><td>1–21</td><td>1</td><td>Page the book opens on.</td></tr>
+            <tr><td><code>theme</code></td><td><code>dark</code> · <code>light</code></td><td>dark</td><td>Colour of the reader chrome around the pages.</td></tr>
+            <tr><td><code>mode</code></td><td><code>auto</code> · <code>spread</code> · <code>single</code></td><td>auto</td><td>Two-page spread, one page, or pick by width.</td></tr>
+            <tr><td><code>height</code></td><td>pixels</td><td>—</td><td>Fixed height. Turns auto-sizing off. <span class="only">script embed only</span></td></tr>
+            <tr><td><code>min-height</code></td><td>pixels</td><td>420</td><td>Floor for auto-sizing. <span class="only">script embed only</span></td></tr>
+            <tr><td><code>max-height</code></td><td>pixels</td><td>900</td><td>Ceiling for auto-sizing. <span class="only">script embed only</span></td></tr>
+            <tr><td><code>radius</code></td><td>pixels</td><td>14</td><td>Corner radius of the embed. <span class="only">script embed only</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="cols">
+        <div>
+          <h3 class="h3">Deep links</h3>
+          <p>
+            Every page has its own address. Link straight to the cone spec sheet
+            with <code>flipbook.html?page=13</code> — the copy-link button in the
+            reader gives you the address of whatever is on screen.
+          </p>
+        </div>
+        <div>
+          <h3 class="h3">Driving it from your page</h3>
+          <p>The script embed exposes a small API on <code>window</code>:</p>
+          <div class="code code--sm">
+            <button class="copy" type="button">Copy</button>
+<pre><code><span class="k">WarningLitesFlipbook</span>.goto(<span class="n">13</span>);
+<span class="k">WarningLitesFlipbook</span>.next();
+<span class="k">WarningLitesFlipbook</span>.onPage(<span class="k">function</span> (page, total) {
+  console.log(page + <span class="s">' of '</span> + total);
+});</code></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band--cta">
+    <div class="wrap wrap--narrow">
+      <h2 class="h2">Need something we didn't list?</h2>
+      <p class="lede">
+        Warning Lites has been a trusted partner for roadway safety and traffic
+        control throughout Minnesota since 1954 — with local inventory, custom sign
+        manufacturing and statewide coverage from Minneapolis, Brainerd, Duluth,
+        Rochester and St. Cloud.
+      </p>
+      <div class="cta-row">
+        <a class="btn btn--primary" href="https://warninglitesmn.com" target="_blank" rel="noopener">
+          warninglitesmn.com
+          <span class="btn__circle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+          </span>
+        </a>
+        <a class="btn btn--ghost" href="tel:+16122774750">612-277-4750</a>
+        <a class="btn btn--ghost" href="mailto:sales@warninglitesmn.com">sales@warninglitesmn.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <span class="mark">Warning Lites</span>
+    <p>2026 Product Catalog · Traffic safety products &amp; roadway safety equipment</p>
+    <a href="flipbook.html">Open the reader full screen →</a>
+  </div>
+</footer>
+
+<script src="embed.js" defer></script>
+<script src="assets/site.js" defer></script>
+</body>
+</html>
