@@ -123,3 +123,19 @@ count, so the contents list cannot silently drift out of step with the artwork.
 
 Catalog artwork and the Warning Lites brand are © Warning Lites of Minnesota.
 Barlow and Barlow Condensed are used under the SIL Open Font License 1.1.
+
+## Standalone build for a Claude Artifact
+
+`tools/build_artifact.py` bundles the whole reader into one self-contained HTML
+file — stylesheet, script, fonts and all 21 pages inlined as data URIs, the
+manifest embedded rather than fetched:
+
+```sh
+python3 tools/build_artifact.py       # -> artifact/flipbook-artifact.html
+```
+
+Artifacts run under a strict CSP that blocks every external request, and the
+sandbox makes page-initiated downloads inert, so that build drops the PDF
+download and copy-link buttons and follows the *viewer's* light/dark theme
+instead of the `theme` parameter. It reports its size against the 16 MB
+artifact limit (currently ~4.4 MB).

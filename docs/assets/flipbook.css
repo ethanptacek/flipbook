@@ -6,19 +6,25 @@
    to drop onto a host page as well as into the embed iframe.
    ========================================================================== */
 
+/* Light is the base palette; the two blocks below redefine only the tokens for
+   dark, so an un-stamped page follows the OS and an explicit stamp wins over it.
+   Components never reference a colour outside this set. */
 :root {
-  --fb-bg:        #0E0F11;
-  --fb-bg-2:      #15171A;
-  --fb-surface:   #1C1F24;
-  --fb-surface-2: #262A31;
-  --fb-ink:       #F4F4F2;
-  --fb-muted:     #969CA4;
-  --fb-accent:    #F2571C;
+  --fb-bg:        #EDEDEA;
+  --fb-bg-2:      #F4F4F2;
+  --fb-surface:   #FFFFFF;
+  --fb-surface-2: #E5E5E1;
+  --fb-ink:       #16181A;
+  --fb-muted:     #64696E;
+  --fb-accent:    #C0400A;
   --fb-accent-dk: #D43E03;
   --fb-on-accent: #FFFFFF;
-  --fb-hair:      rgba(255, 255, 255, 0.11);
-  --fb-hair-soft: rgba(255, 255, 255, 0.06);
+  --fb-hair:      rgba(16, 18, 20, 0.14);
+  --fb-hair-soft: rgba(16, 18, 20, 0.07);
   --fb-page-bg:   #FFFFFF;
+  --fb-glow:      radial-gradient(120% 80% at 50% 30%, rgba(0, 0, 0, 0.06), transparent 70%);
+  --fb-nav-bg:    rgba(255, 255, 255, 0.84);
+  --fb-drawer-bg: rgba(237, 237, 234, 0.95);
 
   --fb-r-sm: 6px;
   --fb-r-md: 10px;
@@ -35,16 +41,40 @@
   --fb-shift: 0px;
 }
 
-.fb[data-theme="light"] {
-  --fb-bg:        #EDEDEA;
-  --fb-bg-2:      #F4F4F2;
-  --fb-surface:   #FFFFFF;
-  --fb-surface-2: #E7E7E3;
-  --fb-ink:       #16181A;
-  --fb-muted:     #6B7075;
-  --fb-hair:      rgba(16, 18, 20, 0.14);
-  --fb-hair-soft: rgba(16, 18, 20, 0.07);
-  --fb-on-accent: #FFFFFF;
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --fb-bg:        #0E0F11;
+    --fb-bg-2:      #15171A;
+    --fb-surface:   #1C1F24;
+    --fb-surface-2: #262A31;
+    --fb-ink:       #F4F4F2;
+    --fb-muted:     #969CA4;
+    --fb-accent:    #F2571C;
+    --fb-hair:      rgba(255, 255, 255, 0.11);
+    --fb-hair-soft: rgba(255, 255, 255, 0.06);
+    --fb-glow:
+      radial-gradient(115% 78% at 50% 34%, rgba(255, 255, 255, 0.075), transparent 68%),
+      radial-gradient(90% 60% at 50% 108%, rgba(242, 87, 28, 0.10), transparent 70%);
+    --fb-nav-bg:    rgba(22, 24, 27, 0.72);
+    --fb-drawer-bg: rgba(14, 15, 17, 0.94);
+  }
+}
+
+:root[data-theme="dark"] {
+  --fb-bg:        #0E0F11;
+  --fb-bg-2:      #15171A;
+  --fb-surface:   #1C1F24;
+  --fb-surface-2: #262A31;
+  --fb-ink:       #F4F4F2;
+  --fb-muted:     #969CA4;
+  --fb-accent:    #F2571C;
+  --fb-hair:      rgba(255, 255, 255, 0.11);
+  --fb-hair-soft: rgba(255, 255, 255, 0.06);
+  --fb-glow:
+    radial-gradient(115% 78% at 50% 34%, rgba(255, 255, 255, 0.075), transparent 68%),
+    radial-gradient(90% 60% at 50% 108%, rgba(242, 87, 28, 0.10), transparent 70%);
+  --fb-nav-bg:    rgba(22, 24, 27, 0.72);
+  --fb-drawer-bg: rgba(14, 15, 17, 0.94);
 }
 
 /* --------------------------------------------------------------- shell -- */
@@ -76,13 +106,8 @@
   content: "";
   position: absolute;
   inset: 0;
-  background:
-    radial-gradient(115% 78% at 50% 34%, rgba(255, 255, 255, 0.075), transparent 68%),
-    radial-gradient(90% 60% at 50% 108%, rgba(242, 87, 28, 0.10), transparent 70%);
+  background: var(--fb-glow);
   pointer-events: none;
-}
-.fb[data-theme="light"] .fb-stage::before {
-  background: radial-gradient(120% 80% at 50% 30%, rgba(0, 0, 0, 0.05), transparent 70%);
 }
 
 .fb-sr {
@@ -392,7 +417,7 @@
   padding: 0;
   border: 1px solid var(--fb-hair);
   border-radius: 50%;
-  background: rgba(22, 24, 27, 0.72);
+  background: var(--fb-nav-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: var(--fb-ink);
@@ -402,7 +427,6 @@
               transform var(--fb-dur) var(--fb-ease),
               opacity var(--fb-dur) var(--fb-ease);
 }
-.fb[data-theme="light"] .fb-nav { background: rgba(255, 255, 255, 0.82); }
 .fb-nav svg { width: 25px; height: 25px; }
 .fb-nav--prev { left: clamp(6px, 1.6vw, 20px); }
 .fb-nav--next { right: clamp(6px, 1.6vw, 20px); }
@@ -415,7 +439,7 @@
 .fb-nav--next:hover { transform: translateX(3px); }
 .fb-nav:disabled { opacity: 0.22; cursor: default; transform: none; }
 .fb-nav:disabled:hover {
-  background: rgba(22, 24, 27, 0.72);
+  background: var(--fb-nav-bg);
   border-color: var(--fb-hair);
   color: var(--fb-ink);
 }
@@ -499,14 +523,13 @@
   z-index: 10;
   display: flex;
   flex-direction: column;
-  background: rgba(14, 15, 17, 0.94);
+  background: var(--fb-drawer-bg);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s var(--fb-ease), visibility 0.3s;
 }
-.fb[data-theme="light"] .fb-drawer { background: rgba(237, 237, 234, 0.95); }
 .fb.is-drawer-open .fb-drawer { opacity: 1; visibility: visible; }
 
 .fb-drawer__head {
@@ -611,6 +634,8 @@
 
 /* ------------------------------------------------------------- zoom UI -- */
 
+/* Deliberately single-theme: a full-resolution page reads best on near-black,
+   so this overlay and its controls keep fixed colours in light and dark. */
 .fb-lightbox {
   position: absolute;
   inset: 0;

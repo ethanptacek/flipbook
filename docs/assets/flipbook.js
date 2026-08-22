@@ -76,7 +76,14 @@
   if (qs.get("page")) cfg.page = parseInt(qs.get("page"), 10);
   else if (hashPage) cfg.page = parseInt(hashPage[1], 10);
 
-  root.setAttribute("data-theme", cfg.theme === "light" ? "light" : "dark");
+  /* Stamp the theme on the document root so the token blocks in the stylesheet
+     resolve.  "auto" stamps nothing, which leaves the page following
+     prefers-color-scheme — that is what the standalone artifact build uses. */
+  if (cfg.theme === "light" || cfg.theme === "dark") {
+    document.documentElement.setAttribute("data-theme", cfg.theme);
+  } else if (cfg.theme !== "auto") {
+    document.documentElement.setAttribute("data-theme", "dark");
+  }
 
   /* ------------------------------------------------------------ state -- */
 
@@ -123,7 +130,8 @@
   /* ----------------------------------------------------------- images -- */
 
   function srcFor(page) {
-    return page ? (useWebp ? page.src : page.fallback) : "";
+    if (!page) return "";
+    return useWebp || !page.fallback ? page.src : page.fallback;
   }
 
   var preloaded = Object.create(null);
@@ -166,7 +174,7 @@
       return;
     }
     target.classList.remove("is-empty");
-    target.style.backgroundImage = 'url("' + page.blur + '")';
+    target.style.backgroundImage = page.blur ? 'url("' + page.blur + '")' : "";
     var url = srcFor(page);
     if (img.getAttribute("src") !== url) {
       img.setAttribute("src", url);
@@ -774,13 +782,14 @@
     if (bar) bar.hidden = true;
   }
 
-  Promise.all([
-    fetch(cfg.manifest, { cache: "default" }).then(function (r) {
-      if (!r.ok) throw new Error("HTTP " + r.status);
-      return r.json();
-    }),
-    detectWebp()
-  ]).then(function (out) {
+  var loadManifest = window.FLIPBOOK_MANIFEST
+    ? Promise.resolve(window.FLIPBOOK_MANIFEST)
+    : fetch(cfg.manifest, { cache: "default" }).then(function (r) {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      });
+
+  Promise.all([loadManifest, detectWebp()]).then(function (out) {
     book = out[0];
     useWebp = out[1];
     pages = book.pages || [];
@@ -794,7 +803,7 @@
         ? book.brand + " — " + book.title
         : book.title;
     }
-    if (book.pdf) {
+    if (book.pdf && el.download) {
       el.download.setAttribute("href", book.pdf);
       el.download.setAttribute("data-tip",
         "Download the PDF" + (book.pdfSize ? " (" + book.pdfSize + ")" : ""));
